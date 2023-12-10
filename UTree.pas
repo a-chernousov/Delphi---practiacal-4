@@ -5,7 +5,8 @@ const
   MinElem = 1;
   MaxElem = 100;
 type
-  TElem = MinElem .. MaxElem;
+  //TElem = MinElem .. MaxElem;
+  TElem = integer;
   TPtr = ^TNode;
   TNode = record
     inf : TElem;
@@ -72,7 +73,7 @@ begin
     else
       AddRandom_R (Root^.right, el)
 end; 
-
+                                                              
 procedure Input (var Root : TTree);
 var
   el : TElem;
@@ -105,7 +106,7 @@ end;
 procedure Print (Root : TTree);
 begin
   if Root = nil then
-    writeln('?????? ?????')
+    writeln('Дерево пустое')
   else
     Print_Help(Root, 0);
 end;
@@ -287,6 +288,7 @@ begin
       mid_val:=Summa/count;
     end;
 end;
+
 
 end.
 
