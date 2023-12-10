@@ -1,5 +1,8 @@
 unit UTree;
 interface
+  uses
+    data_unit;
+    
 const
   MinElem = 1;
   MaxElem = 100;
@@ -11,6 +14,7 @@ type
     left, right : TPtr;
   end;
   TTree = TPtr;
+
   procedure Init (var Root : TTree);
   function IsEmpty (Root : TTree): boolean;
   procedure Input (var Root : TTree);
@@ -25,11 +29,12 @@ type
   function DeleteElem (var Root : TTree; el : TElem): boolean;
   procedure Clear (var Root : TTree);
   function MidValue_R (Root : TTree; var mid_val : real) : boolean;
-  //function MidValue_I (Root : TTree; var mid_val : real) : boolean;
+  function MidValue_I (Root : TTree; var mid_val : real) : boolean;
 
 implementation
-//uses
-//   Contnrs;
+uses
+  UStack;
+
 procedure Init (var Root : TTree);
 begin
  Root:=nil;
@@ -257,7 +262,6 @@ begin
     end;
 end;
 
-{
 function MidValue_I (Root : TTree; var mid_val : real) : boolean;
 var
   S : TStack;
@@ -268,24 +272,24 @@ begin
   Result:=not IsEmpty(Root);
   if Result then
     begin
-      S:=TStack.Create;
+      UStack.init(s);
       Summa:=0;
       count:=0;
-      S.Push(Root);
-      while S.count>0 do
+      UStack.Push(s, Root);
+      while not UStack.IsEmpty(s) do
         begin
-          t:=S.Pop;
+          t := UStack.Pop(s);
           Summa:=Summa+t^.inf;
           count:=count+1;
           if t^.left<>nil then
-            S.Push(t^.left);
+            UStack.Push(s, t^.left);
           if t^.right<>nil then
-            S.Push(t^.right);
+            UStack.Push(s, t^.right);
         end;
       mid_val:=Summa/count;
     end;
 end;
-}
+
 end.
 
 

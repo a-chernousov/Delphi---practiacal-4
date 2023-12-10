@@ -5,7 +5,13 @@ program main;
 uses
   SysUtils,
   UTree in 'UTree.pas';
+  //UStack in 'UStack.pas';
+
+var
+  t : TTree;
 
 begin
-  { TODO -oUser -cConsole Main : Insert code here }
+  init(t);
+  input(t);
+  print(t);
 end.

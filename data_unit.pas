@@ -1,0 +1,18 @@
+unit data_unit;
+
+interface  //Tree tyt lezit
+const
+  MinElem = 1;
+  MaxElem = 100;
+type
+  TElem = MinElem .. MaxElem;
+  TPtr = ^TNode;
+  TNode = record
+    inf : TElem;
+    left, right : TPtr;
+  end;
+  TTree = TPtr;
+
+implementation
+
+end.
